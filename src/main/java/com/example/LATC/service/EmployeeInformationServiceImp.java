@@ -19,32 +19,28 @@ public class EmployeeInformationServiceImp implements EmployeeInformationService
 	
 	@Override
 	public EmployeeInformation save(EmployeeInformation entity) {
-		System.out.println("Hit");
 		return repo.save(entity);
 	}
 
 	@Override
 	public EmployeeInformation update(EmployeeInformation entity) {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.save(entity);
 	}
 
 	@Override
 	public EmployeeInformation delete(EmployeeInformation entity) {
-		// TODO Auto-generated method stub
-		return null;
+		repo.delete(entity);
+		return entity;
 	}
 
 	@Override
 	public List<EmployeeInformation> getByMaritalStatus(String status) {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.findByMaritalStatus("M");
 	}
 
 	@Override
 	public List<EmployeeInformation> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.findAll();
 	}
 	
 	
