@@ -1,0 +1,78 @@
+spring:
+  application:
+    name: ibcs-bof-erp-api
+  profiles:
+    active: dev
+server:
+  port: 9090
+
+---
+#Dev
+spring:
+  profiles: dev
+  # Database
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres # BOF Test Server
+#    url: jdbc:postgresql://202.161.191.133:4352/bof_dev # IBCS Server
+    username: postgres
+    password: csl12345
+    #data: classpath:/component-module-submodule.sql,classpath:/role.sql,classpath:/permissions.sql,classpath:/user-role.sql,classpath:/role_permission.sql,classpath:/url-data.sql,classpath:/api-endpoints.sql,classpath:/navigations.sql
+    initialization-mode: always
+    
+  globalcors:
+    corsConfigurations:
+      '[/**]':
+        allowedOrigins: "*"
+        allowedMethods: "*"
+        allowedHeaders: "*"
+        
+#  autoconfigure:
+#     exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+#     
+  jpa:
+    hibernate:
+      ddl-auto: update # When you launch the application for the first time - switch "none" at "create"
+    show-sql: false
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: true
+    
+#spring:
+#  application:
+#    name: API-GATEWAY
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: ADMIN-SERVICE
+#          uri: lb://ADMIN-SERVICE
+#          predicates:
+#            - Path=/admin/**
+#        - id: HR-SERVICE
+#          uri: lb://HR-SERVICE
+#          predicates:
+#            - Path=/hr/**
+#        - id: LEAVE-SERVICE
+#          uri: lb://LEAVE-SERVICE
+#          predicates:
+#            - Path=/leave/**
+#      globalcors:
+#        corsConfigurations:
+#          '[/**]':
+#            allowedOrigins: "*"
+#            allowedMethods: "*"
+#            allowedHeaders: "*"
+#
+#  autoconfigure:
+#     exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+#
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+#  instance:
+#    hostname: localhost
+
